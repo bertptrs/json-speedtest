@@ -1,0 +1,14 @@
+{
+  "is_valid": true,
+  "name": "Some important thing",
+  "value": "lots of value",
+  "parts": [
+    {
+      "a": 1,
+      "b": 2
+    },
+    {
+      "a": 3
+    }
+  ]
+}
