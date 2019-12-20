@@ -4,6 +4,7 @@
 #include <fstream>
 #include "common.hpp"
 #include "json_dto.hpp"
+#include "nlohmann.hpp"
 
 typedef std::string serializer_t(const SampleStruct&);
 typedef SampleStruct deserializer_t(std::string_view);
@@ -34,6 +35,9 @@ int main(int argc, const char ** argv) {
     if (implementation_name == "json_dto") {
         serializer = serialize_json_dto;
         deserializer = deserialize_json_dto;
+    } else if (implementation_name == "nlohmann") {
+        serializer = serialize_nlohmann;
+        deserializer = deserialize_nlohmann;
     } else {
         std::cerr << "Unknown implementation: " << implementation_name << std::endl;
         return 1;
@@ -52,9 +56,7 @@ int main(int argc, const char ** argv) {
         data = serializer(sample);
     }
 
-    const SampleStruct sample = deserialize_json_dto(data);
-
-    std::cout << serialize_json_dto(sample) << '\n';
+    std::cout << data << std::endl;
 
     std::chrono::duration<double, std::nano> elapsed = Clock::now() - start;
 
