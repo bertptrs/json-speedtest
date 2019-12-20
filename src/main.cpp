@@ -5,11 +5,13 @@
 #include "common.hpp"
 #include "json_dto.hpp"
 #include "nlohmann.hpp"
+#include "rapidjson.hpp"
 
-typedef std::string serializer_t(const SampleStruct&);
+typedef std::string serializer_t(const SampleStruct &);
+
 typedef SampleStruct deserializer_t(std::string_view);
 
-static std::string read_all_input(std::istream& input) {
+static std::string read_all_input(std::istream &input) {
     std::string result;
     char buffer[4096];
     while (input) {
@@ -21,7 +23,7 @@ static std::string read_all_input(std::istream& input) {
     return result;
 }
 
-int main(int argc, const char ** argv) {
+int main(int argc, const char **argv) {
     serializer_t *serializer;
     deserializer_t *deserializer;
 
@@ -38,6 +40,9 @@ int main(int argc, const char ** argv) {
     } else if (implementation_name == "nlohmann") {
         serializer = serialize_nlohmann;
         deserializer = deserialize_nlohmann;
+    } else if (implementation_name == "rapidjson") {
+        serializer = serialize_rapidjson;
+        deserializer = deserialize_rapidjson;
     } else {
         std::cerr << "Unknown implementation: " << implementation_name << std::endl;
         return 1;

@@ -7,7 +7,7 @@ find_package(json-dto)
 find_package(RapidJSON)
 find_package(nlohmann_json)
 
-add_executable(speedtest src/main.cpp src/common.cpp src/common.hpp src/json_dto.cpp src/json_dto.hpp src/nlohmann.cpp src/nlohmann.hpp)
+add_executable(speedtest src/main.cpp src/common.cpp src/common.hpp src/json_dto.cpp src/json_dto.hpp src/nlohmann.cpp src/nlohmann.hpp src/rapidjson.cpp src/rapidjson.hpp)
 
 target_compile_features(speedtest PRIVATE cxx_std_17)
 target_compile_options(speedtest PRIVATE -Wall -Wextra -Werror)
