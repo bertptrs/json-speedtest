@@ -67,10 +67,11 @@ namespace {
         value.SetObject();
         value.AddMember("is_valid", data.is_valid, allocator);
         value.AddMember("name", data.name, allocator);
+        value.AddMember("value", data.value, allocator);
         value.AddMember("parts", rapidjson::Value().SetArray(), allocator);
 
         for (auto& part : data.parts) {
-            value["parts"].GetArray().PushBack(serialize(part, allocator), allocator);
+            value["parts"].PushBack(serialize(part, allocator), allocator);
         }
 
         return value;
