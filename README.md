@@ -1,12 +1,48 @@
 # JSON speed test
 
 In this repository we attempt to compare the (de)serialization performance of
-various JSON libraries. 
+various JSON libraries. Here, we test the following json serialization
+libraries:
+
+- [epee](https://github.com/hyle-team/epee), the library currently in use by
+  [Monero project](https://github.com/monero-project/monero/). Serialization
+  is intrusive (part of the actual struct) and heavily macro based. It is
+  theoretically header-only but it does depend indirectly on `easylogging++`.
+
+- [JSON for Modern C++](https://github.com/nlohmann/json), also known as 
+  `nlohmann/json` or just `nlohmann` is one of the most widely used JSON
+  libraries for C++11 and offers a DOM-based API for easy (de)serialization.
+  
+- [RapidJSON](https://rapidjson.org/) is a high-performance JSON serialization
+  library designed for speed over convenience. It requires significant input
+  from the API consumer on memory management, but it is also about as fast as
+  `strlen()`.
+  
+- [json_dto](https://github.com/Stiffstream/json_dto) is a relatively new, thin
+  wrapper for RapidJSON. It abstracts away the rough edges and provides you
+  with primitives that you can use to easily serialize your own types, as well
+  as standard library types.
 
 ## Included code and licenses
 
 This project includes code from `epee` by Andrey N. Sabelnikov, and code from
 Easylogging++. All code is copyright their respective authors.
+
+## Requirements
+
+This speed test project targets C++17 for brevity, however this is not a
+technical requirement, and the code can be easily converted to target older
+versions of C++.
+
+For most projects under test, the minimal C++ version is 11, however,
+`json_dto` requires C++14. Support for C++14 is currently widespread and
+available in the default GCC bundled with the LTS versions of all major
+Linux distributions, as well as Apple and Windows.
+
+The speedtest can be built with CMake. It will search the system for library
+locations for `nlohmann`, RapidJSON, and `json_dto`. The usual overrides for
+[`find_package`](https://cmake.org/cmake/help/latest/command/find_package.html)
+apply. `epee` and `easylogging++` are included in-tree. 
 
 ## Test results
 
