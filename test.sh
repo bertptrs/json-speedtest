@@ -39,7 +39,7 @@ function populate_compile_time() {
 	for impl in "${IMPLEMENTATIONS[@]}"; do
 		# parsing time output is… inconvenient
 		# we use command time rather than builtin for more consistent output
-		compile_time="$(command time -p make -B "src/$impl.o" |& grep -oP '(?<=^real )([0-9.]+)')"
+		compile_time="$(command time -f '%e' -p make -B "src/$impl.o" |& tail -n 1)"
 		COMPILE_TIME[$impl]=$compile_time
 	done
 }
