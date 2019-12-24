@@ -21,7 +21,19 @@ libraries:
 - [json_dto](https://github.com/Stiffstream/json_dto) is a relatively new, thin
   wrapper for RapidJSON. It abstracts away the rough edges and provides you
   with primitives that you can use to easily serialize your own types, as well
-  as standard library types.
+  as standard library types. The library may be a little less common, but the
+  heavy lifting of securely parsing JSON is left to the well tested
+  RapidJSON.
+
+In the table below you can see a short summary of the code-quality
+
+| Library | C++ | Maintainer responsiveness | Github stars | Contributors | Notoriety |
+| --- | --- | --- | --- | --- |
+| epee | C++11 | n/a | n/a | 1, maybe | n/a |
+| nlohmann/json | C++11 | 1 day | 16.9k | 147 | De-facto standard |
+| RapidJSON | C++03, C++11 | Wildly varying | 8.7k | Well-known high-performance JSON library |
+| `json_dto` | C++14 | 1 day | 31 | Small wrapper around RapidJSON adding lots of quality-of-life improvements while not doing heavy lifting. |
+
 
 ## Included code and licenses
 
@@ -56,6 +68,10 @@ implementations.
 An exception to this is the implementation for `epee`, since it has to be
 implemented intrusively. To keep the comparison fair, `epee` therefore
 serializes objects of type `EpeeSampleStruct`.
+
+Looking at the different implementation files, it is easy to see that
+there's a difference in ergonomics between the libraries. RapidJSON
+reqiures a lot more code to express the same thing as `json_dto` does.
 
 ## Usage
 
