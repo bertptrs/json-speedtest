@@ -81,7 +81,7 @@ make "-j$(nproc)"
 populate_run_time
 populate_meminfo
 
-echo "implementation,compile_size,compile_time,num_allocations,bytes_allocated"
+echo "implementation,compile_size,compile_time,run_time,num_allocations,bytes_allocated"
 
 for impl in "${IMPLEMENTATIONS[@]}"; do
     printf "%s,%d,%f,%f,%d,%d\n" "$impl" "${SIZES[$impl]}" "${COMPILE_TIME[$impl]}" \

@@ -9,15 +9,15 @@ libraries:
   is intrusive (part of the actual struct) and heavily macro based. It is
   theoretically header-only but it does depend indirectly on `easylogging++`.
 
-- [JSON for Modern C++](https://github.com/nlohmann/json), also known as 
+- [JSON for Modern C++](https://github.com/nlohmann/json), also known as
   `nlohmann/json` or just `nlohmann` is one of the most widely used JSON
   libraries for C++11 and offers a DOM-based API for easy (de)serialization.
-  
+
 - [RapidJSON](https://rapidjson.org/) is a high-performance JSON serialization
   library designed for speed over convenience. It requires significant input
   from the API consumer on memory management, but it is also about as fast as
   `strlen()`.
-  
+
 - [json_dto](https://github.com/Stiffstream/json_dto) is a relatively new, thin
   wrapper for RapidJSON. It abstracts away the rough edges and provides you
   with primitives that you can use to easily serialize your own types, as well
@@ -92,10 +92,10 @@ The following table shows the result of our testing. Lower values are bettter.
 
 | implementation | compile size | compile time | run time per iteration (ns) | num allocations | bytes allocated |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| `epee` | 376791 | 10.98 | 4051.310 | 4000367 | 0.52 Gib |
-| `nlohmann` | 118827 | 3.11 | 4152.760 | 8800367 | 0.42 GiB |
-| `rapidjson` | 10881 | 1.32 | 1060.800 | 1800369 | 13.34 GiB |
-| `json_dto` | 59809 | 1.44 | 959.696 | 1700369 | 13.34 GiB |
+| `epee` | 376791 | 10.96 | 4010.770 | 4000367 | 0.52 Gib |
+| `nlohmann` | 118827 | 3.12 | 4122.610 | 8800367 | 0.42 GiB |
+| `rapidjson` | 10881 | 1.32 | 961.692 | 1800369 | 13.34 GiB |
+| `json_dto` | 59809 | 1.45 | 967.808 | 1700369 | 13.34 GiB |
 
 Some caveats apply: memory usage always includes 365 allocations for the
 initialization of `easylogging`, which results in approximately 15kb more
