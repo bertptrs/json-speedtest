@@ -110,3 +110,10 @@ We can see that `epee` is outperformed by every other JSON library. RapidJSON
 (and by extension `json_dto`) does larger but less frequent allocations than
 the other two. It makes up for this by doing less allocations in total as well
 as better significantly performance.
+
+![Run time for different implementations](./graphs/runtime.svg)
+
+![Comparison of compilation of different
+implementations](./graphs/compile.svg)
+
+![Comparison of memory allocations](./graphs/allocations.svg)
