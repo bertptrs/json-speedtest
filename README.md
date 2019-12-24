@@ -28,11 +28,11 @@ libraries:
 In the table below you can see a short summary of the code-quality
 
 | Library | C++ | Maintainer responsiveness | Github stars | Contributors | Notoriety |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | epee | C++11 | n/a | n/a | 1, maybe | n/a |
 | nlohmann/json | C++11 | 1 day | 16.9k | 147 | De-facto standard |
-| RapidJSON | C++03, C++11 | Wildly varying | 8.7k | Well-known high-performance JSON library |
-| `json_dto` | C++14 | 1 day | 31 | Small wrapper around RapidJSON adding lots of quality-of-life improvements while not doing heavy lifting. |
+| RapidJSON | C++03, C++11 | Wildly varying | 8.7k | 139, backed by Tencent | Well-known high-performance JSON library |
+| `json_dto` | C++14 | 1 day | 31 | 3 | Small wrapper around RapidJSON adding lots of quality-of-life improvements while not doing heavy lifting. |
 
 
 ## Included code and licenses
