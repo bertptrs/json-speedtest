@@ -104,14 +104,27 @@ We measure the following metrics for each implementation:
 - total number of allocations over the above iterations,
 - total number of bytes allocated over the above iterations.
 
-The following table shows the result of our testing. Lower values are bettter.
+The following table shows the result of our testing with
+[`sample.json`](./sample.json) as the input file. Lower values are
+better.
 
 | implementation | compile size | compile time | run time per iteration (ns) | num allocations | bytes allocated |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| `epee` | 376791 | 10.96 | 4010.770 | 4000367 | 0.52 Gib |
-| `nlohmann` | 118827 | 3.12 | 4122.610 | 8800367 | 0.42 GiB |
-| `rapidjson` | 10881 | 1.32 | 961.692 | 1800369 | 13.34 GiB |
-| `json_dto` | 59809 | 1.45 | 967.808 | 1700369 | 13.34 GiB |
+| `epee` | 376791 | 10.96 | 4010.770 | 4000367 | 0.49 Gib |
+| `nlohmann` | 118827 | 3.12 | 4122.610 | 8800367 | 0.39 GiB |
+| `rapidjson` | 10881 | 1.32 | 961.692 | 1800369 | 12.42 GiB |
+| `json_dto` | 59809 | 1.45 | 967.808 | 1700369 | 12.42 GiB |
+
+If we use a slightly larger file
+([`sample-large.json`](./sample-large.json)) as input, the differences
+become more apparent:
+
+| implementation | run time per iteration (ns) | num allocations | bytes allocated |
+| --- | ---: | ---: | ---: |
+| `epee` | 32157.400000 | 23400337 | 7.33 GiB |
+| `nlohmann` | 28405.900000 | 52100353 | 2.87 GiB |
+| `rapidjson` 5453.870000 | 2400369 | 12.60 GiB |
+| `json_dto` | 4112.310000 | 1900369 | 12.56 GiB |
 
 Some caveats apply: memory usage always includes 365 allocations for the
 initialization of `easylogging`, which results in approximately 15kb more
@@ -125,11 +138,22 @@ comparable and negligible between the different implementations.
 We can see that `epee` is outperformed by every other JSON library. RapidJSON
 (and by extension `json_dto`) does larger but less frequent allocations than
 the other two. It makes up for this by doing less allocations in total as well
-as better significantly performance.
+as significantly better performance. The difference also becomes smaller
+as file size increases.
 
-![Run time for different implementations](./graphs/runtime.svg)
+### Compilation comparison
 
 ![Comparison of compilation of different
 implementations](./graphs/compile.svg)
 
+### Performance on `sample.json`
+
+![Run time for different implementations](./graphs/runtime.svg)
+
 ![Comparison of memory allocations](./graphs/allocations.svg)
+
+### Performance on `sample-large.json`
+
+![Run time for different implementations](./graphs-large/runtime.svg)
+
+![Comparison of memory allocations](./graphs-large/allocations.svg)
