@@ -121,10 +121,10 @@ become more apparent:
 
 | implementation | run time per iteration (ns) | num allocations | bytes allocated |
 | --- | ---: | ---: | ---: |
-| `epee` | 32157.400000 | 23400337 | 7.33 GiB |
-| `nlohmann` | 28405.900000 | 52100353 | 2.87 GiB |
-| `rapidjson` 5453.870000 | 2400369 | 12.60 GiB |
-| `json_dto` | 4112.310000 | 1900369 | 12.56 GiB |
+| `epee` | 32157.40 | 23400337 | 7.33 GiB |
+| `nlohmann` | 28405.90 | 52100353 | 2.87 GiB |
+| `rapidjson` | 5453.87 | 2400369 | 12.60 GiB |
+| `json_dto` | 4112.31 | 1900369 | 12.56 GiB |
 
 Some caveats apply: memory usage always includes 365 allocations for the
 initialization of `easylogging`, which results in approximately 15kb more
